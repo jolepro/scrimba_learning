@@ -27,7 +27,8 @@ onValue(endorsementInDB, (snapshot) => {
     if (snapshot.exists()) {
         clear(endorsementsEl, 'textContent')
         const endorsements = Object.entries(snapshot.val());
-        endorsements.length > 0 ?
+        console.log(endorsements.length);
+        endorsements.length > 1 ?
             titleEl.textContent = '- Endorsements -' :
             titleEl.textContent = '- Endorsement -';
         endorsements.forEach(element => {
