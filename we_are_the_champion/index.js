@@ -13,6 +13,7 @@ const endorsementInDB = ref(database, 'Endorsements');
 const endorsementFormEl = document.getElementById('endorsementForm');
 const endorsementFieldEl = document.getElementById('endorsement-field');
 const endorsementsEl = document.getElementById('endorsements');
+const titleEl = document.getElementById('title');
 
 endorsementFormEl.addEventListener('submit', (e) => {
     const endorsement = endorsementFieldEl.value;
@@ -26,6 +27,9 @@ onValue(endorsementInDB, (snapshot) => {
     if (snapshot.exists()) {
         clear(endorsementsEl, 'textContent')
         const endorsements = Object.entries(snapshot.val());
+        endorsements.length > 0 ?
+            titleEl.textContent = '- Endorsements -' :
+            titleEl.textContent = '- Endorsement -';
         endorsements.forEach(element => {
             const [itemId, item] = Object.entries(element);
             const endorsementEl = document.createElement('li');
